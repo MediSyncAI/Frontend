@@ -2,7 +2,7 @@ import { motion } from 'motion/react';
 import { Button } from './ui/button';
 import { Card, CardContent } from './ui/card';
 import { Activity, Calendar, Video, Users, Heart, Shield, Zap } from 'lucide-react';
-import { ImageWithFallback } from './figma/ImageWithFallback';
+import { ImageWithFallback } from './interface/ImageWithFallback';
 
 export function LandingPage({ setCurrentPage }) {
   const features = [

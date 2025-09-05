@@ -15,7 +15,7 @@ import {
   Eye,
   Activity
 } from 'lucide-react';
-import { ImageWithFallback } from './figma/ImageWithFallback';
+import { ImageWithFallback } from './interface/ImageWithFallback';
 
 export function EventsPage() {
   const [searchTerm, setSearchTerm] = useState('');
