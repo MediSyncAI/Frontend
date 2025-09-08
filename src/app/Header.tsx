@@ -51,7 +51,12 @@ export default function Header() {
 
           {/* User Actions */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button variant="outline" size="sm">Sign In</Button>
+
+              <Link href="/signin" passHref>
+                <Button variant="outline" size="sm">
+                  Sign In
+                </Button>
+              </Link>
             <Button size="sm">Get Started</Button>
           </div>
 
