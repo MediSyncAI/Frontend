@@ -96,123 +96,117 @@ export default function App() {
   };
 
   return (
-    <>
-    <Header/>
-    <div className="min-h-screen   bg-background">
-      <div className="container mx-auto px-30 py-10 space-y-6">
-        {/* Header */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-          <div>
-            <h1 className="text-3xl text-blue-500 font-bold">Hospital Medicine Inventory</h1>
-            <p className="text-muted-foreground">
-              Manage and track all medicines in the hospital pharmacy
+   <>
+      <Header/>
+      <div className="min-h-screen bg-gray-50 py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+          
+          {/* Header */}
+          <div className="mb-8">
+            <h1 className="text-4xl text-gray-900 mb-2">Medicine Inventory</h1>
+            <p className="text-xl text-gray-600">
+              Manage and track all medicines in the hospital pharmacy.
             </p>
           </div>
-          <Button onClick={handleAddMedicine} className="flex items-center gap-2">
-            <Plus className="h-4 w-4" />
-            Add Medicine
-          </Button>
-        </div>
 
-        {/* Statistics Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Total Medicines</CardTitle>
-              <Package className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">{stats.total}</div>
-              <p className="text-xs text-muted-foreground">
-                Active inventory items
-              </p>
-            </CardContent>
-          </Card>
+          {/* Statistics Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Total Medicines</CardTitle>
+                <Package className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">{stats.total}</div>
+                <p className="text-xs text-muted-foreground">Active inventory items</p>
+              </CardContent>
+            </Card>
 
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Low Stock</CardTitle>
-              <TrendingDown className="h-4 w-4 text-orange-500" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold text-orange-600">{stats.lowStock}</div>
-              <p className="text-xs text-muted-foreground">
-                Items below minimum level
-              </p>
-            </CardContent>
-          </Card>
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Low Stock</CardTitle>
+                <TrendingDown className="h-4 w-4 text-orange-500" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold text-orange-600">{stats.lowStock}</div>
+                <p className="text-xs text-muted-foreground">Items below minimum level</p>
+              </CardContent>
+            </Card>
 
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Out of Stock</CardTitle>
-              <AlertTriangle className="h-4 w-4 text-destructive" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold text-destructive">{stats.outOfStock}</div>
-              <p className="text-xs text-muted-foreground">
-                Items requiring immediate restock
-              </p>
-            </CardContent>
-          </Card>
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Out of Stock</CardTitle>
+                <AlertTriangle className="h-4 w-4 text-destructive" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold text-destructive">{stats.outOfStock}</div>
+                <p className="text-xs text-muted-foreground">Items requiring immediate restock</p>
+              </CardContent>
+            </Card>
 
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Expiring Soon</CardTitle>
-              <AlertTriangle className="h-4 w-4 text-orange-500" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold text-orange-600">{stats.expiringSoon}</div>
-              <p className="text-xs text-muted-foreground">
-                Expiring within 30 days
-              </p>
-            </CardContent>
-          </Card>
-        </div>
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Expiring Soon</CardTitle>
+                <AlertTriangle className="h-4 w-4 text-orange-500" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold text-orange-600">{stats.expiringSoon}</div>
+                <p className="text-xs text-muted-foreground">Expiring within 30 days</p>
+              </CardContent>
+            </Card>
+          </div>
 
-        {/* Filters */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Filter & Search</CardTitle>
-            <CardDescription>
-              Filter medicines by category, stock status, or search by name
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <MedicineFilters
-              medicines={medicines}
-              searchTerm={searchTerm}
-              onSearchChange={setSearchTerm}
-              categoryFilter={categoryFilter}
-              onCategoryFilterChange={setCategoryFilter}
-              stockFilter={stockFilter}
-              onStockFilterChange={setStockFilter}
-              onClearFilters={handleClearFilters}
-            />
-          </CardContent>
-        </Card>
+          {/* Filters - No longer in a Card */}
+          <div className="space-y-4">
+             <h2 className="text-2xl text-gray-800">Filter & Search</h2>
+             <MedicineFilters
+                medicines={medicines}
+                searchTerm={searchTerm}
+                onSearchChange={setSearchTerm}
+                categoryFilter={categoryFilter}
+                onCategoryFilterChange={setCategoryFilter}
+                stockFilter={stockFilter}
+                onStockFilterChange={setStockFilter}
+                onClearFilters={handleClearFilters}
+              />
+          </div>
 
-        {/* Medicine Table */}
-        <Card>
-          <CardHeader>
-            <div className="flex justify-between items-center">
+          {/* Medicine Table Section */}
+          <div>
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4">
               <div>
-                <CardTitle>Medicine Inventory</CardTitle>
-                <CardDescription>
+                <h2 className="text-2xl text-gray-800">Inventory List</h2>
+                <p className="text-gray-500">
                   Showing {filteredMedicines.length} of {stats.total} medicines
-                </CardDescription>
+                </p>
               </div>
+              <Button onClick={handleAddMedicine} className="flex items-center gap-2 mt-4 sm:mt-0">
+                <Plus className="h-4 w-4" />
+                Add Medicine
+              </Button>
             </div>
-          </CardHeader>
-          <CardContent>
-            <MedicineTable
-              medicines={filteredMedicines}
-              onEdit={handleEditMedicine}
-              onDelete={handleDeleteMedicine}
-            />
-          </CardContent>
-        </Card>
+            
+            <Card>
+              <CardContent className="p-0">
+                {filteredMedicines.length > 0 ? (
+                  <MedicineTable
+                    medicines={filteredMedicines}
+                    onEdit={handleEditMedicine}
+                    onDelete={handleDeleteMedicine}
+                  />
+                ) : (
+                  <div className="text-center py-16">
+                    <Pill className="h-16 w-16 text-gray-300 mx-auto mb-4" />
+                    <h3 className="text-lg text-gray-600 mb-2">No Medicines Found</h3>
+                    <p className="text-gray-500">Try adjusting your search or filter criteria.</p>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          </div>
+        </div>
 
-        {/* Edit/Add Dialog */}
+        {/* Edit/Add Dialog (no changes needed here) */}
         <MedicineEditDialog
           medicine={editingMedicine}
           open={isDialogOpen}
@@ -220,7 +214,7 @@ export default function App() {
           onSave={handleSaveMedicine}
         />
       </div>
-    </div>
-    </>
+    </>
+
   );
 }
