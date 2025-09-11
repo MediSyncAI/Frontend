@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation"; // to highlight active route
 import { Button } from "@/app/components/ui/button";
 import { Menu, X, Activity, Users, Calendar, VideoIcon, PlusCircle, Plus } from "lucide-react";
@@ -25,8 +26,8 @@ export default function Header() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center space-x-2">
-            <Activity className="h-8 w-8 text-blue-600" />
-            <span className="text-xl font-semibold text-gray-900">MedTech Pro</span>
+            <Image src="/icon512_maskable.png" alt="web logo" width={50} height={100}/>
+            <span className="text-xl font-semibold text-gray-900">MediSyncAI</span>
           </div>
 
           {/* Desktop Navigation */}
