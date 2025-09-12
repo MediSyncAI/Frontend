@@ -7,7 +7,7 @@ import { MedicineFilters } from "./MedicineFilters";
 import { mockMedicines } from "../data/mockMedicines";
 import { Button } from "../components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
-import { Plus, Package, AlertTriangle, TrendingDown } from "lucide-react";
+import { Plus, Package,Pill, AlertTriangle, TrendingDown } from "lucide-react";
 import { toast } from "sonner";
 import Header from "../Header";
 

@@ -14,7 +14,22 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs'
 import { Alert, AlertDescription } from '../components/ui/alert';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/select';
 import { Eye, EyeOff, Stethoscope, ShieldCheck, UserPlus, LogIn, ArrowLeft, User } from 'lucide-react';
+import { UseFormReturn } from "react-hook-form";
 
+interface DoctorRegistrationFieldsProps {
+  form: UseFormReturn<DoctorRegisterFormData>; // ideally replace `any` with your form data type
+  showPassword: boolean;
+  showConfirmPassword: boolean;
+  setShowPassword: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowConfirmPassword: React.Dispatch<React.SetStateAction<boolean>>;
+}
+export interface PatientRegistrationForm {
+ form: UseFormReturn<PatientRegisterFormData>; // ideally replace `any` with your form data type
+  showPassword: boolean;
+  showConfirmPassword: boolean;
+  setShowPassword: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowConfirmPassword: React.Dispatch<React.SetStateAction<boolean>>;
+}
 interface LoginFormData {
   email: string;
   password: string;
@@ -341,8 +356,13 @@ export default function AuthForm({ userType, onBack }: AuthFormProps) {
   );
 }
 
-function DoctorRegistrationFields({ form, showPassword, showConfirmPassword, setShowPassword, setShowConfirmPassword }: any) {
-  return (
+function DoctorRegistrationFields({
+  form,
+  showPassword,
+  showConfirmPassword,
+  setShowPassword,
+  setShowConfirmPassword,
+}: DoctorRegistrationFieldsProps) {  return (
     <>
       <div className="grid grid-cols-2 gap-4">
         <div className="space-y-2">
@@ -521,7 +541,7 @@ function DoctorRegistrationFields({ form, showPassword, showConfirmPassword, set
   );
 }
 
-function PatientRegistrationFields({ form, showPassword, showConfirmPassword, setShowPassword, setShowConfirmPassword }: any) {
+function PatientRegistrationFields({ form, showPassword, showConfirmPassword, setShowPassword, setShowConfirmPassword }: PatientRegistrationForm) {
   return (
     <>
 

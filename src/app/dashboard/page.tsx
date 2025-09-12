@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
 import { Progress } from '../components/ui/progress';
+import {Appointment, HealthMetrics, Status, Trend, RecentTest, Prescription} from "../types/types"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
 import { 
   User, 
@@ -32,96 +33,100 @@ export default function Page() {
     lastVisit: '2024-12-15'
   });
 
-  const [healthMetrics] = useState({
-    heartRate: { value: 72, status: 'normal', trend: 'stable' },
-    bloodPressure: { systolic: 120, diastolic: 80, status: 'normal', trend: 'improved' },
-    weight: { value: 170, unit: 'lbs', status: 'normal', trend: 'stable' },
-    temperature: { value: 98.6, unit: '°F', status: 'normal', trend: 'stable' }
-  });
+const [healthMetrics] = useState<HealthMetrics>({
+  heartRate: { value: 72, status: "normal", trend: "stable" },
+  bloodPressure: { systolic: 120, diastolic: 80, status: "normal", trend: "improved" },
+  weight: { value: 170, unit: "lbs", status: "normal", trend: "stable" },
+  temperature: { value: 98.6, unit: "°F", status: "normal", trend: "stable" },
+});
 
-  const [appointments] = useState([
-    {
-      id: 1,
-      doctor: 'Dr. Sarah Johnson',
-      specialty: 'Cardiologist',
-      date: '2025-01-18',
-      time: '10:00 AM',
-      type: 'Follow-up',
-      status: 'confirmed'
-    },
-    {
-      id: 2,
-      doctor: 'Dr. Michael Chen',
-      specialty: 'General Physician',
-      date: '2025-01-22',
-      time: '2:00 PM',
-      type: 'Annual Checkup',
-      status: 'pending'
-    }
-  ]);
+const [appointments] = useState<Appointment[]>([
+  {
+    id: 1,
+    doctor: "Dr. Sarah Johnson",
+    specialty: "Cardiologist",
+    date: "2025-01-18",
+    time: "10:00 AM",
+    type: "Follow-up",
+    status: "confirmed",
+  },
+  {
+    id: 2,
+    doctor: "Dr. Michael Chen",
+    specialty: "General Physician",
+    date: "2025-01-22",
+    time: "2:00 PM",
+    type: "Annual Checkup",
+    status: "pending",
+  },
+]);
 
-  const [prescriptions] = useState([
-    {
-      id: 1,
-      medication: 'Lisinopril 10mg',
-      dosage: 'Once daily',
-      prescribed: 'Dr. Sarah Johnson',
-      startDate: '2024-12-01',
-      endDate: '2025-02-01',
-      status: 'active'
-    },
-    {
-      id: 2,
-      medication: 'Metformin 500mg',
-      dosage: 'Twice daily',
-      prescribed: 'Dr. Michael Chen',
-      startDate: '2024-11-15',
-      endDate: '2025-01-15',
-      status: 'expiring'
-    }
-  ]);
+const [prescriptions] = useState<Prescription[]>([
+  {
+    id: 1,
+    medication: "Lisinopril 10mg",
+    dosage: "Once daily",
+    prescribed: "Dr. Sarah Johnson",
+    startDate: "2024-12-01",
+    endDate: "2025-02-01",
+    status: "active",
+  },
+  { 
+    id: 2,
+    medication: "Metformin 500mg",
+    dosage: "Twice daily",
+    prescribed: "Dr. Michael Chen",
+    startDate: "2024-11-15",
+    endDate: "2025-01-15",
+    status: "expiring",
+  },
+]);
 
-  const [recentTests] = useState([
-    {
-      id: 1,
-      test: 'Blood Panel',
-      date: '2024-12-10',
-      status: 'completed',
-      result: 'Normal',
-      doctor: 'Dr. Sarah Johnson'
-    },
-    {
-      id: 2,
-      test: 'ECG',
-      date: '2024-12-05',
-      status: 'completed',
-      result: 'Normal',
-      doctor: 'Dr. Sarah Johnson'
-    }
-  ]);
+const [recentTests] = useState<RecentTest[]>([
+  {
+    id: 1,
+    test: "Blood Panel",
+    date: "2024-12-10",
+    status: "completed",
+    result: "Normal",
+    doctor: "Dr. Sarah Johnson",
+  },
+  {
+    id: 2,
+    test: "ECG",
+    date: "2024-12-05",
+    status: "completed",
+    result: "Normal",
+    doctor: "Dr. Sarah Johnson",
+  },
+]);
 
-  const getStatusColor = (status) => {
-    const colors = {
-      normal: 'text-green-600 bg-green-100',
-      active: 'text-green-600 bg-green-100',
-      confirmed: 'text-blue-600 bg-blue-100',
-      pending: 'text-yellow-600 bg-yellow-100',
-      expiring: 'text-orange-600 bg-orange-100',
-      completed: 'text-green-600 bg-green-100'
-    };
-    return colors[status] || 'text-gray-600 bg-gray-100';
+
+
+const getStatusColor = (status: Status): string => {
+  const colors: Record<Status, string> = {
+    normal: 'text-green-600 bg-green-100',
+    active: 'text-green-600 bg-green-100',
+    confirmed: 'text-blue-600 bg-blue-100',
+    pending: 'text-yellow-600 bg-yellow-100',
+    expiring: 'text-orange-600 bg-orange-100',
+    completed: 'text-green-600 bg-green-100',
   };
+  return colors[status] || 'text-gray-600 bg-gray-100';
+};
 
-  const getTrendIcon = (trend) => {
-    switch (trend) {
-      case 'improved':
-        return <TrendingUp className="h-4 w-4 text-green-600" />;
-      case 'stable':
-        return <Activity className="h-4 w-4 text-blue-600" />;
-      default:
-        return <AlertCircle className="h-4 w-4 text-orange-600" />;
-    }
-  };
+const getTrendIcon = (trend: Trend) => {
+  switch (trend) {
+    case 'improved':
+      return <TrendingUp className="h-4 w-4 text-green-600" />;
+    case 'stable':
+      return <Activity className="h-4 w-4 text-blue-600" />;
+    case 'declined':
+    default:
+      return <AlertCircle className="h-4 w-4 text-orange-600" />;
+  }
+};
+
 
   return (
     <>
@@ -279,7 +284,7 @@ export default function Page() {
                   {prescriptions.filter(p => p.status === 'active' || p.status === 'expiring').map(prescription => (
                     <div key={prescription.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                       <div>
-                        <p className="text-sm text-gray-900">{prescription.medication}</p>
+                        {/* <p className="text-sm text-gray-900">{prescription.medication}</p> */}
                         <p className="text-xs text-gray-600">{prescription.dosage}</p>
                       </div>
                       <Badge className={getStatusColor(prescription.status)}>

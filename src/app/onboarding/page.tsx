@@ -126,7 +126,7 @@ export default function MedicalOnboarding() {
               {currentStep === 3 && <><AlertTriangle className="mr-2 h-5 w-5" />Medical History</>}
             </CardTitle>
             <CardDescription>
-              {currentStep === 1 && "Let's start with your basic information"}
+              {currentStep === 1 && "Let&apos;s start with your basic information"}
               {currentStep === 2 && "Now, some important medical details"}
               {currentStep === 3 && "Finally, your medical history"}
             </CardDescription>
@@ -257,7 +257,7 @@ export default function MedicalOnboarding() {
                     rows={3}
                   />
                   <p className="text-sm text-gray-500 mt-1">
-                    Include medications, foods, or environmental allergies. Write "None" if no known allergies.
+                    Include medications, foods, or environmental allergies. Write &quot;None&quot; if no known allergies.
                   </p>
                 </div>
 

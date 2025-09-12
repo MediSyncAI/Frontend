@@ -19,11 +19,31 @@ import {
 import { ImageWithFallback } from '../components/interface/ImageWithFallback';
 import Header from '../Header';
 
-export default function page() {
+export default function Page() {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterCategory, setFilterCategory] = useState('all');
 
-  const events = [
+
+
+  interface Event {
+      id: number,
+      title: string,
+      category: Category,
+      date: string,
+      time: string,
+      location: string,
+      description: string,
+      attendees: number,
+      maxAttendees: number,
+      image: string, 
+      status: string,
+      medicines: Array<string>
+  }
+
+
+
+
+  const events : Event[]  = [
     {
       id: 1,
       title: 'Free Health Checkup Camp',
@@ -97,15 +117,19 @@ export default function page() {
     return matchesSearch && matchesCategory;
   });
 
-  const getCategoryBadgeColor = (category) => {
-    const colors = {
-      checkup: 'bg-blue-100 text-blue-800',
-      cardiology: 'bg-red-100 text-red-800',
-      pediatric: 'bg-green-100 text-green-800',
-      ophthalmology: 'bg-purple-100 text-purple-800'
-    };
-    return colors[category] || 'bg-gray-100 text-gray-800';
+type Category = 'checkup' | 'cardiology' | 'pediatric' | 'ophthalmology';
+
+const getCategoryBadgeColor = (category: Category) => {
+  const colors: Record<Category, string> = {
+    checkup: 'bg-blue-100 text-blue-800',
+    cardiology: 'bg-red-100 text-red-800',
+    pediatric: 'bg-green-100 text-green-800',
+    ophthalmology: 'bg-purple-100 text-purple-800',
   };
+
+  return colors[category] || 'bg-gray-100 text-gray-800';
+};
+
 
   return (
     <>
