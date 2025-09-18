@@ -30,10 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-    <Head>
-      <meta name="google" content="notranslate"/>
 
-    </Head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

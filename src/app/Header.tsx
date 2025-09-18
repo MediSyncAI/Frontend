@@ -6,7 +6,6 @@ import Image from "next/image";
 import { usePathname } from "next/navigation"; // to highlight active route
 import { Button } from "@/app/components/ui/button";
 import { Menu, X, Activity, Users, Calendar, VideoIcon, PlusCircle, Plus } from "lucide-react";
-import GoogleTranslate from "./components/googletTranslate";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -60,7 +59,7 @@ export default function Header() {
           </nav>
 
           {/* User Actions */}
-          <GoogleTranslate />
+
 
 {loggedIn ? "Welcome back" : 
           <div className="hidden md:flex items-center space-x-4">
