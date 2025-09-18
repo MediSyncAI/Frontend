@@ -8,14 +8,16 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from ".
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
 import { Checkbox } from "../components/ui/checkbox";
 import { CalendarIcon, UserCheck, Heart, AlertTriangle } from "lucide-react";
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+
+
 
 interface OnboardingData {
   fullName: string;
   dateOfBirth: string;
   gender: string;
   phone: string;
-  email: string;
-  emergencyContact: string;
   emergencyPhone: string;
   bloodGroup: string;
   allergies: string;
@@ -31,13 +33,12 @@ interface OnboardingData {
 
 export default function MedicalOnboarding() {
   const [currentStep, setCurrentStep] = useState(1);
+  const router = useRouter();
   const [formData, setFormData] = useState<OnboardingData>({
     fullName: '',
     dateOfBirth: '',
     gender: '',
     phone: '',
-    email: '',
-    emergencyContact: '',
     emergencyPhone: '',
     bloodGroup: '',
     allergies: '',
@@ -74,6 +75,9 @@ export default function MedicalOnboarding() {
     console.log('Onboarding data:', formData);
     // Handle form submission here
     alert('Profile created successfully! Welcome to the app.');
+    router.push("/dashboard");
+
+    
   };
 
   const nextStep = () => {
@@ -97,8 +101,8 @@ export default function MedicalOnboarding() {
         {/* Header */}
         <div className="text-center mb-8">
           <div className="flex items-center justify-center mb-4">
-            <Heart className="h-8 w-8 text-red-500 mr-2" />
-            <h1 className="text-3xl text-gray-900">MediCare</h1>
+            <Image src="/icon512_maskable.png" alt='logo' width={50} height={100}/>
+            <h1 className="text-3xl text-gray-900">MediSyncAI</h1>
           </div>
           <h2 className="text-xl text-gray-700">Complete Your Medical Profile</h2>
           <p className="text-gray-500 mt-2">Help us provide you with personalized care</p>
@@ -126,7 +130,7 @@ export default function MedicalOnboarding() {
               {currentStep === 3 && <><AlertTriangle className="mr-2 h-5 w-5" />Medical History</>}
             </CardTitle>
             <CardDescription>
-              {currentStep === 1 && "Let&apos;s start with your basic information"}
+              {currentStep === 1 && "Let's start with your basic information"}
               {currentStep === 2 && "Now, some important medical details"}
               {currentStep === 3 && "Finally, your medical history"}
             </CardDescription>
@@ -187,28 +191,10 @@ export default function MedicalOnboarding() {
                   </div>
                 </div>
 
-                <div>
-                  <Label htmlFor="email">Email Address *</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => handleInputChange('email', e.target.value)}
-                    placeholder="your.email@example.com"
-                    required
-                  />
-                </div>
+
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <Label htmlFor="emergencyContact">Emergency Contact Name *</Label>
-                    <Input
-                      id="emergencyContact"
-                      value={formData.emergencyContact}
-                      onChange={(e) => handleInputChange('emergencyContact', e.target.value)}
-                      placeholder="Emergency contact full name"
-                      required
-                    />
+
                   </div>
                   <div>
                     <Label htmlFor="emergencyPhone">Emergency Contact Phone *</Label>
@@ -222,7 +208,7 @@ export default function MedicalOnboarding() {
                     />
                   </div>
                 </div>
-              </div>
+            
             )}
 
             {/* Step 2: Medical Information */}

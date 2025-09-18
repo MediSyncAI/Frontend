@@ -19,19 +19,31 @@ import {
   Clock,
   User
 } from 'lucide-react';
-import { ImageWithFallback } from '../app/components/interface/ImageWithFallback';
+import { ImageWithFallback } from '../components/interface/ImageWithFallback';
 
+
+type Doctor = {
+  id: number
+  name: string
+  specialty: string
+  rating: number
+  experience: string
+  isOnline: boolean
+  image: string
+  consultationFee: string
+  nextAvailable: string
+}
 
 export default function Page() {
   const [isVideoOn, setIsVideoOn] = useState(true);
   const [isAudioOn, setIsAudioOn] = useState(true);
   const [isInCall, setIsInCall] = useState(false);
   const [callDuration, setCallDuration] = useState(0);
-  const [selectedDoctor, setSelectedDoctor] = useState(null);
+  const [selectedDoctor, setSelectedDoctor] = useState<Doctor | null>(null);
 
   const videoRef = useRef(null);
 
-  const doctors = [
+  const doctors: Doctor[] = [
     {
       id: 1,
       name: 'Dr. Sarah Johnson',
@@ -67,7 +79,7 @@ export default function Page() {
     }
   ];
 
-  const startCall = (doctor) => {
+  const startCall = (doctor: Doctor) => {
     setSelectedDoctor(doctor);
     setIsInCall(true);
   };
@@ -78,7 +90,7 @@ export default function Page() {
     setCallDuration(0);
   };
 
-  const formatDuration = (seconds) => {
+  const formatDuration = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
     return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;

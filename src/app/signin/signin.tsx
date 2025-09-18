@@ -93,6 +93,8 @@ export default function AuthForm({ userType, onBack }: AuthFormProps) {
     } else {
       // Redirect or perform any necessary actions after successful sign-in
       
+      localStorage.setItem("user", data.email);
+
       router.push("/dashboard");
     }
     

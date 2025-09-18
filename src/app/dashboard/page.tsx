@@ -139,7 +139,7 @@ const getTrendIcon = (trend: Trend) => {
         <div className="flex justify-between items-center mb-8">
           <div>
             <h1 className="text-4xl text-gray-900 mb-2">Health Dashboard</h1>
-            <p className="text-xl text-gray-600">Welcome back, {userProfile.name}</p>
+            <p className="text-xl text-gray-600">Welcome back</p>
           </div>
           <div className="flex space-x-3">
             <Button variant="outline" size="sm">

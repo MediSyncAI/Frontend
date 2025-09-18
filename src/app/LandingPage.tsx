@@ -7,26 +7,30 @@ import { Activity, Calendar, Video, Users, Heart, Shield, Zap } from 'lucide-rea
 import { ImageWithFallback } from '../app/components/interface/ImageWithFallback';
 import Header from "./Header";
 
-export default function LandingPage({ setCurrentPage }) {
+type LandingPageProps = {
+  setCurrentPage?: (page: string) => void;
+};
+
+export default function LandingPage({ setCurrentPage }: LandingPageProps) {
   const router = useRouter();
   const features = [
     {
       icon: Calendar,
       title: 'Medical Events',
       description: 'Discover and join medical camps and healthcare events in your area.',
-      action: () => setCurrentPage('events')
+      action: () => (setCurrentPage ? setCurrentPage('events') : router.push('/events'))
     },
     {
       icon: Video,
       title: 'Telemedicine',
       description: 'Connect with healthcare professionals through secure video calls.',
-      action: () => setCurrentPage('video')
+      action: () => (setCurrentPage ? setCurrentPage('video') : router.push('/videocall'))
     },
     {
       icon: Users,
       title: 'Patient Dashboard',
       description: 'Manage your health records and track your medical journey.',
-      action: () => setCurrentPage('dashboard')
+      action: () => (setCurrentPage ? setCurrentPage('dashboard') : router.push('/dashboard'))
     }
   ];
 

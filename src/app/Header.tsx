@@ -1,16 +1,23 @@
 "use client"; // needed since we use useState
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation"; // to highlight active route
 import { Button } from "@/app/components/ui/button";
 import { Menu, X, Activity, Users, Calendar, VideoIcon, PlusCircle, Plus } from "lucide-react";
+import GoogleTranslate from "./components/googletTranslate";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
   const pathname = usePathname(); // gives current route
-
+  useEffect(()=> {
+    const userExist =  localStorage.getItem("user");
+    if(userExist){
+      setLoggedIn(true);
+    }
+  }, [])
   const navItems = [
     { href: "/", label: "Home", icon: Activity },
     { href: "/events", label: "Events", icon: Calendar },
@@ -53,6 +60,9 @@ export default function Header() {
           </nav>
 
           {/* User Actions */}
+          <GoogleTranslate />
+
+{loggedIn ? "Welcome back" : 
           <div className="hidden md:flex items-center space-x-4">
 
               <Link href="/signin" passHref>
@@ -62,7 +72,7 @@ export default function Header() {
               </Link>
             <Button size="sm">Get Started</Button>
           </div>
-
+}
           {/* Mobile menu button */}
           <div className="md:hidden">
             <button
