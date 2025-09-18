@@ -3,11 +3,7 @@
   "installCommand": "npm ci",
   "outputDirectory": ".next",
   "framework": "nextjs",
-  "functions": {
-    "api/**/*.js": {
-      "maxDuration": 60
-    }
-  }
+  "functions": {}
 }
 
 
