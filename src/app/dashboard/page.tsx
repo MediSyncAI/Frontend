@@ -136,7 +136,7 @@ const getTrendIcon = (trend: Trend) => {
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="flex justify-between items-center mb-8">
+        <div className="flex justify-between items-center mb-8 max-[458px]:flex-col max-[514px]:items-start max-[514px]:gap-4">
           <div>
             <h1 className="text-4xl text-gray-900 mb-2">Health Dashboard</h1>
             <p className="text-xl text-gray-600">Welcome back</p>

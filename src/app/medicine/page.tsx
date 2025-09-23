@@ -180,8 +180,8 @@ export default function App() {
                   Showing {filteredMedicines.length} of {stats.total} medicines
                 </p>
               </div>
-              <Button onClick={handleAddMedicine} className="flex items-center gap-2 mt-4 sm:mt-0">
-                <Plus className="h-4 w-4" />
+              <Button onClick={handleAddMedicine} className="flex items-center gap-2 mt-4 sm:mt-0 border border-black">
+                <Plus className="h-4 w-4 " />
                 Add Medicine
               </Button>
             </div>
