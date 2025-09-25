@@ -252,7 +252,7 @@ const getCategoryBadgeColor = (category: Category) => {
                   </div>
                 </div>
 
-                <Button className="w-full">
+                <Button className="w-full border border-black" >
                   Register for Event
                 </Button>
               </CardContent>

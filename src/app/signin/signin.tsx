@@ -174,7 +174,7 @@ export default function AuthForm({ userType, onBack }: AuthFormProps) {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto">
+    <div className="w-full max-w-md mx-auto border border-black p-6 rounded-lg shadow-lg bg-white">
       <div className="flex items-center justify-between mb-8">
         <Button variant="ghost" onClick={onBack} className="p-2 text-gray-600 hover:text-gray-700 hover:bg-gray-50">
           <ArrowLeft className="h-4 w-4" />

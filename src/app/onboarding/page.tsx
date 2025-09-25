@@ -169,7 +169,7 @@ export default function MedicalOnboarding() {
                       <SelectTrigger>
                         <SelectValue placeholder="Select gender" />
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent >
                         {genders.map((gender) => (
                           <SelectItem key={gender} value={gender.toLowerCase()}>
                             {gender}
@@ -221,7 +221,7 @@ export default function MedicalOnboarding() {
                     <SelectTrigger>
                       <SelectValue placeholder="Select blood group" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className='white-dropdown'>
                       {bloodGroups.map((group) => (
                         <SelectItem key={group} value={group}>
                           {group}
@@ -337,12 +337,14 @@ export default function MedicalOnboarding() {
                 variant="outline"
                 onClick={prevStep}
                 disabled={currentStep === 1}
+                
               >
                 Previous
               </Button>
               
               {currentStep < totalSteps ? (
-                <Button onClick={nextStep}>
+                <Button onClick={nextStep}
+                className='border border-black'>
                   Next Step
                 </Button>
               ) : (
